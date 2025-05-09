@@ -16,8 +16,9 @@ public class Employee {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "department")
-    private String department;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id", nullable = false)
+    private Department department;
 
     @Column(name = "salary")
     private int salary;
@@ -25,12 +26,15 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String name, String surname, String department, int salary) {
-        this.name = name;
-        this.surname = surname;
-        this.department = department;
+    public Employee(int id, int salary, Department department, String surname, String name) {
+        this.id = id;
         this.salary = salary;
+        this.department = department;
+        this.surname = surname;
+        this.name = name;
     }
+
+
 
     @Override
     public String toString() {
@@ -59,20 +63,20 @@ public class Employee {
         this.salary = salary;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
     public String getSurname() {
         return surname;
     }
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
     }
 
     public String getName() {
