@@ -115,4 +115,11 @@ public class Employee {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Status getStatus() {
+        return status;
+    }
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }
