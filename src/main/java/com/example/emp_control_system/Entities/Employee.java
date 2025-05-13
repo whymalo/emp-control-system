@@ -1,6 +1,7 @@
 package com.example.emp_control_system.Entities;
 
 import jakarta.persistence.*;
+
 @Entity
 @Table(name = "employees")
 public class Employee {
@@ -16,6 +17,13 @@ public class Employee {
     @Column(name = "surname")
     private String surname;
 
+    @Column(name = "email")
+    private String email;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manager_id")
+    private Employee manager;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", nullable = false)
     private Department department;
@@ -23,18 +31,21 @@ public class Employee {
     @Column(name = "salary")
     private int salary;
 
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
     public Employee() {
     }
 
-    public Employee(int id, int salary, Department department, String surname, String name) {
+    public Employee(int id, String name, String surname, String email, Department department, int salary, Employee manager) {
         this.id = id;
-        this.salary = salary;
-        this.department = department;
-        this.surname = surname;
         this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.department = department;
+        this.salary = salary;
+        this.manager = manager;
     }
-
-
 
     @Override
     public String toString() {
@@ -42,9 +53,27 @@ public class Employee {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", department='" + department + '\'' +
+                ", email='" + email + '\'' +
+                ", manager=" + manager +
+                ", department=" + department +
                 ", salary=" + salary +
                 '}';
+    }
+
+    public Employee getManager() {
+        return manager;
+    }
+
+    public void setManager(Employee manager) {
+        this.manager = manager;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getId() {
@@ -85,5 +114,12 @@ public class Employee {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

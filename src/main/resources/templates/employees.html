@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Список работников</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Сотрудники</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Email</th>
+        <th>Отдел</th>
+        <th>Зарплата</th>
+        <th>Менеджер</th>
+    </tr>
+    <tr th:each="emp : ${employees}">
+        <td th:text="${emp.id}"></td>
+        <td th:text="${emp.name}"></td>
+        <td th:text="${emp.surname}"></td>
+        <td th:text="${emp.email}"></td>
+        <td th:text="${emp.department.name}"></td>
+        <td th:text="${emp.salary}"></td>
+        <td th:text="${emp.manager != null ? emp.manager.name + ' ' + emp.manager.surname : '—'}"></td>
+    </tr>
+</table>
+</body>
+</html>
