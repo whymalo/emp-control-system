@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Список отделов</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+<h1>Отделы</h1>
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Название</th>
+    <th>Местоположение</th>
+  </tr>
+  <tr th:each="dep : ${departments}">
+    <td th:text="${dep.id}"></td>
+    <td th:text="${dep.name + ' (' + dep.short_name + ')'}"></td>
+    <td th:text="${dep.location}"></td>
+  </tr>
+</table>
+
+</body>
+</html>

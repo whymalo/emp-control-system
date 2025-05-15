@@ -9,5 +9,4 @@ public class EmpControlSystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EmpControlSystemApplication.class, args);
 	}
-
 }

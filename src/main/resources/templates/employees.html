@@ -13,8 +13,10 @@
         <th>Фамилия</th>
         <th>Email</th>
         <th>Отдел</th>
+        <th>Должность</th>
         <th>Зарплата</th>
         <th>Менеджер</th>
+        <th>Профиль сотрудника</th>
     </tr>
     <tr th:each="emp : ${employees}">
         <td th:text="${emp.id}"></td>
@@ -22,8 +24,11 @@
         <td th:text="${emp.surname}"></td>
         <td th:text="${emp.email}"></td>
         <td th:text="${emp.department.name}"></td>
+        <td th:text="${emp.position != null ? emp.position.name : '—'}"></td>
         <td th:text="${emp.salary}"></td>
         <td th:text="${emp.manager != null ? emp.manager.name + ' ' + emp.manager.surname : '—'}"></td>
+        <td><a th:href="@{'/employees/' + ${emp.id}}" th:text="${emp.name + ' ' + emp.surname}"></a> </td>
+
     </tr>
 </table>
 </body>

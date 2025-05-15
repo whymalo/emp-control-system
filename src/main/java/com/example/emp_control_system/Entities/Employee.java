@@ -28,17 +28,29 @@ public class Employee {
     @JoinColumn(name = "department_id", nullable = false)
     private Department department;
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "position_id")
+    private Position position;
+
     @Column(name = "salary")
     private int salary;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private EmployeeStatus status;
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 
     public Employee() {
     }
 
-    public Employee(int id, String name, String surname, String email, Department department, int salary, Employee manager) {
-        this.id = id;
+    public Employee(String name, String surname, String email, Department department, int salary, Employee manager) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -80,10 +92,6 @@ public class Employee {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getSalary() {
         return salary;
     }
@@ -116,10 +124,10 @@ public class Employee {
         this.name = name;
     }
 
-    public Status getStatus() {
+    public EmployeeStatus getStatus() {
         return status;
     }
-    public void setStatus(Status status) {
+    public void setStatus(EmployeeStatus status) {
         this.status = status;
     }
 }
