@@ -37,7 +37,7 @@ public class Employee {
     private int salary;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private EmployeeStatus status;
 
     public Position getPosition() {
         return position;
@@ -124,10 +124,10 @@ public class Employee {
         this.name = name;
     }
 
-    public Status getStatus() {
+    public EmployeeStatus getStatus() {
         return status;
     }
-    public void setStatus(Status status) {
+    public void setStatus(EmployeeStatus status) {
         this.status = status;
     }
 }
