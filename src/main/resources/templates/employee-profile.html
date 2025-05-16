@@ -1,23 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Профиль сотрудника</title>
+    <meta charset="UTF-8">
+    <title>Профиль сотрудника</title>
 </head>
 <body>
+<div th:replace="fragments/header :: header"></div>
 <h1>Профиль сотрудника</h1>
 
 <table border="1">
-  <tr><td>ID:</td><td th:text="${employee.id}"></td></tr>
-  <tr><td>Имя:</td><td th:text="${employee.name}"></td></tr>
-  <tr><td>Фамилия:</td><td th:text="${employee.surname}"></td></tr>
-  <tr><td>Email:</td><td th:text="${employee.email}"></td></tr>
-  <tr><td>Зарплата:</td><td th:text="${employee.salary}"></td></tr>
-  <tr><td>Отдел:</td><td th:text="${employee.department.name}"></td></tr>
-  <tr><td>Менеджер:</td>
-    <td th:text="${employee.manager != null ? employee.manager.name + ' ' + employee.manager.surname : '—'}"></td>
-  </tr>
-  <tr><td>Статус:</td><td th:text="${employee.status}"></td></tr>
+    <tr>
+        <td>ID:</td>
+        <td th:text="${employee.id}"></td>
+    </tr>
+    <tr>
+        <td>Имя:</td>
+        <td th:text="${employee.name}"></td>
+    </tr>
+    <tr>
+        <td>Фамилия:</td>
+        <td th:text="${employee.surname}"></td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td th:text="${employee.email}"></td>
+    </tr>
+    <tr>
+        <td>Зарплата:</td>
+        <td th:text="${employee.salary}"></td>
+    </tr>
+    <tr>
+        <td>Отдел:</td>
+        <td>
+            <a th:href="@{/departments/{id}(id=${employee.department.id})}" th:text="${employee.department.name}"></a>
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>Менеджер:</td>
+        <td th:text="${employee.manager != null ? employee.manager.name + ' ' + employee.manager.surname : '—'}"></td>
+    </tr>
+    <tr>
+        <td>Статус:</td>
+        <td th:text="${employee.status}"></td>
+    </tr>
 </table>
 
 <br>
