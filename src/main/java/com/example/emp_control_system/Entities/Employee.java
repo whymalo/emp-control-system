@@ -50,44 +50,6 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String name, String surname, String email, Department department, int salary, Employee manager) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.department = department;
-        this.salary = salary;
-        this.manager = manager;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", manager=" + manager +
-                ", department=" + department +
-                ", salary=" + salary +
-                '}';
-    }
-
-    public Employee getManager() {
-        return manager;
-    }
-
-    public void setManager(Employee manager) {
-        this.manager = manager;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public int getId() {
         return id;
     }
@@ -106,6 +68,22 @@ public class Employee {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public Employee getManager() {
+        return manager;
+    }
+
+    public void setManager(Employee manager) {
+        this.manager = manager;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSurname() {
@@ -129,5 +107,32 @@ public class Employee {
     }
     public void setStatus(EmployeeStatus status) {
         this.status = status;
+    }
+
+    public Employee(String name, String surname, String email, Employee manager, Department department, Position position, int salary, EmployeeStatus status) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.manager = manager;
+        this.department = department;
+        this.position = position;
+        this.salary = salary;
+        this.status = status;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", manager=" + manager +
+                ", department=" + department +
+                ", position=" + position +
+                ", salary=" + salary +
+                ", status=" + status +
+                ", id=" + id +
+                '}';
     }
 }

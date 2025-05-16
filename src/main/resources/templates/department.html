@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Информация об отделе</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<h1>Информация об отделе</h1>
+
+<table border="1">
+  <tr><th>ID</th><td th:text="${department.id}"></td></tr>
+  <tr><th>Название</th><td th:text="${department.name}"></td></tr>
+  <tr><th>Короткое название</th><td th:text="${department.short_name}"></td></tr>
+  <tr><th>Местоположение</th><td th:text="${department.location}"></td></tr>
+</table>
+
+<h2>Сотрудники отдела</h2>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Имя</th>
+    <th>Фамилия</th>
+    <th>Email</th>
+    <th>Должность</th>
+    <th>Зарплата</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="emp : ${department.employees}">
+    <td><a th:href="@{'/employees/'+${emp.id}}" th:text="${emp.id}"></a></td>
+    <td><a th:href="@{'/employees/'+${emp.id}}" th:text="${emp.name}"></a></td>
+    <td><a th:href="@{'/employees/'+${emp.id}}" th:text="${emp.surname}"></a></td>
+    <td th:text="${emp.email}"></td>
+    <td th:text="${emp.position != null ? emp.position.name : '—'}"></td>
+    <td th:text="${emp.salary}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<br>
+<a th:href="@{/departments}">← Назад к списку отделов</a>
+</body>
+</html>

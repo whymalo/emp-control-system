@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
 </head>
 <body>
+<div th:replace="fragments/header :: header"></div>
+<form th:action="@{/employees/search}" method="get" style="margin-bottom: 20px;">
+    <input type="text" name="keyword" placeholder="Поиск по id, имени, фамилии, email" required>
+    <button type="submit">Найти</button>
+</form>
+<form th:action="@{/employees}" method="get" style="display: inline;">
+    <button type="submit">Сбросить</button>
+</form>
+
 <h1>Сотрудники</h1>
 <table border="1">
     <tr>
@@ -19,14 +28,19 @@
         <th>Профиль сотрудника</th>
     </tr>
     <tr th:each="emp : ${employees}">
-        <td th:text="${emp.id}"></td>
-        <td th:text="${emp.name}"></td>
-        <td th:text="${emp.surname}"></td>
+        <td><a th:href="@{'/employees/'+${emp.id}}" th:text="${emp.id}"></a></td>
+        <td><a th:href="@{'/employees/'+${emp.id}}" th:text="${emp.name}"></a></td>
+        <td><a th:href="@{'/employees/'+${emp.id}}" th:text="${emp.surname}"></a></td>
         <td th:text="${emp.email}"></td>
         <td th:text="${emp.department.name}"></td>
         <td th:text="${emp.position != null ? emp.position.name : '—'}"></td>
         <td th:text="${emp.salary}"></td>
-        <td th:text="${emp.manager != null ? emp.manager.name + ' ' + emp.manager.surname : '—'}"></td>
+        <td>
+            <a th:if="${emp.manager != null}"
+               th:href="@{'/employees/' + ${emp.manager.id}}"
+               th:text="${emp.manager.name + ' ' + emp.manager.surname}"></a>
+            <span th:unless="${emp.manager != null}">—</span>
+        </td>
         <td><a th:href="@{'/employees/' + ${emp.id}}" th:text="${emp.name + ' ' + emp.surname}"></a> </td>
 
     </tr>
