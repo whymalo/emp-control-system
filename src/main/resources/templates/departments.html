@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
 </head>
 <body>
+<div th:replace="fragments/header :: header"></div>
 <h1>Отделы</h1>
 <table border="1">
   <tr>
@@ -14,7 +15,7 @@
   </tr>
   <tr th:each="dep : ${departments}">
     <td th:text="${dep.id}"></td>
-    <td th:text="${dep.name + ' (' + dep.short_name + ')'}"></td>
+    <td> <a th:href="@{/departments/{id}(id=${dep.id})}"  th:text="${dep.name + ' (' + dep.short_name + ')'}"></a></td>
     <td th:text="${dep.location}"></td>
   </tr>
 </table>
