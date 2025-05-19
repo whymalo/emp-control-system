@@ -41,6 +41,10 @@
     <button type="submit" class="btn">Login</button>
   </form>
 
+  <div style="margin-top: 1rem; text-align: center;">
+    <span>Don't have an account?</span>
+    <a th:href="@{/register}" style="color: #0069ed; font-weight: 600; text-decoration: none;">Register here</a>
+  </div>
   <!-- Сообщения об ошибке и успешном выходе -->
   <div th:if="${param.error}" class="alert alert-danger">
     Invalid username or password.
