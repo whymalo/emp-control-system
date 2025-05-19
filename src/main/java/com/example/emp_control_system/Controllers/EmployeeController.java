@@ -1,47 +1,47 @@
-package com.example.emp_control_system.Controllers;
+    package com.example.emp_control_system.Controllers;
 
-import com.example.emp_control_system.Entities.Employee;
-import com.example.emp_control_system.Service.EmployeeService;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+    import com.example.emp_control_system.Entities.Employee;
+    import com.example.emp_control_system.Service.EmployeeService;
+    import org.springframework.stereotype.Controller;
+    import org.springframework.ui.Model;
+    import org.springframework.web.bind.annotation.GetMapping;
+    import org.springframework.web.bind.annotation.PathVariable;
+    import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-import java.util.Optional;
+    import java.util.List;
+    import java.util.Optional;
 
-@Controller
-public class EmployeeController {
+    @Controller
+    public class EmployeeController {
 
-    private final EmployeeService employeeService;
+        private final EmployeeService employeeService;
 
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
-
-    @GetMapping("/employees")
-    public String showEmployees(Model model) {
-        model.addAttribute("employees", employeeService.getAllEmployees());
-        return "employees";
-    }
-
-    @GetMapping("/employees/{id}")
-    public String showEmployeeProfile(@PathVariable("id") int id, Model model) {
-        Optional<Employee> employee = employeeService.getById(id);
-        if (employee.isPresent()) {
-            model.addAttribute("employee", employee.get());
-            return "employee-profile";
-        } else {
-            return "redirect:/employees";
+        public EmployeeController(EmployeeService employeeService) {
+            this.employeeService = employeeService;
         }
-    }
 
-    @GetMapping("/employees/search")
-    public String searchEmployees(@RequestParam("keyword") String keyword, Model model){
-        List<Employee> result = employeeService.searchByKeyword(keyword);
-        model.addAttribute("employees", result);
-        return "employees";
-    }
+        @GetMapping("/employees")
+        public String showEmployees(Model model) {
+            model.addAttribute("employees", employeeService.getAllEmployees());
+            return "employees";
+        }
 
-}
+        @GetMapping("/employees/{id}")
+        public String showEmployeeProfile(@PathVariable("id") int id, Model model) {
+            Optional<Employee> employee = employeeService.getById(id);
+            if (employee.isPresent()) {
+                model.addAttribute("employee", employee.get());
+                return "employee-profile";
+            } else {
+                return "redirect:/employees";
+            }
+        }
+
+        @GetMapping("/employees/search")
+        public String searchEmployees(@RequestParam("keyword") String keyword, Model model){
+            List<Employee> result = employeeService.searchByKeyword(keyword);
+            model.addAttribute("employees", result);
+            return "employees";
+        }
+
+    }
