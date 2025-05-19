@@ -24,6 +24,10 @@ public class EmployeeService {
         return employeeRepository.findById(id);
     }
 
+    public Employee save(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
     public List<Employee> searchByKeyword(String keyword) {
         List<Employee> result = new ArrayList<>();
         try{
